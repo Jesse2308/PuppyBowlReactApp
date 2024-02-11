@@ -1,7 +1,7 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 500;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -17,6 +17,8 @@ a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
+  transition: color 0.25s;
+  margin: 5px;
 }
 a:hover {
   color: #535bf2;
@@ -24,15 +26,19 @@ a:hover {
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 2.5em;
+  font-weight: 700;
+  margin: 0.5em 0;
+  text-align: center;
 }
 
 button {
@@ -54,15 +60,58 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+img {
+  max-width: 50%;
+  max-height: 50%;
+  display: flex;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 0 1em #000000aa;
+}
+
+.forminfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 0 1em #000000aa;
+  background-color: #1a1a1a;
+}
+.new-player-form {
+  display: flex;
+  flex-direction: column;
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1em;
+  background-color: #1a1a1a;
+  box-shadow: 0 0 1em #000000aa;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.singleplayercss {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 6px;
+  box-shadow: 0 0 1em #000000aa;
+  background-color: #1a1a1a;
+  gap: 1em;
 }

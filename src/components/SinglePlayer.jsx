@@ -1,22 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { API_URL } from "../API";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { fetchSinglePlayer } from "../API";
 
 const SinglePlayer = () => {
-  const [player, setPlayer] = useState({});
+  const [player, setPlayer] = useState(null);
+  const { id } = useParams();
   useEffect(() => {
-    async function fetchPlayer() {
-      try {
-        const response = await fetch(`${API_URL}/${player.id}`);
-        const data = await response.json();
-        setPlayer(data.data);
-      } catch (error) {
-        console.error("Error:", error);
-      }
+    console.log(player, id);
+    async function getSinglePlayer() {
+      const dogplayer = await fetchSinglePlayer(id);
+      console.log(dogplayer);
+      setPlayer(dogplayer);
     }
-    fetchPlayer();
+    getSinglePlayer();
   }, []);
 
   return (
+    <div>
+      {player && (
+        <div>
+          <h1>Single Player View</h1>
+          <ul className="singleplayercss">
+            {player.id}
+            {player.name}
+            {player.breed}
+            {player.status}
+            <img src={player.imageUrl}></img>
+          </ul>
+        </div>
+      )}
+    </div>
   );
 };
 

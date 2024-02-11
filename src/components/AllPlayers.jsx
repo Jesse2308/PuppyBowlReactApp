@@ -1,29 +1,44 @@
 import { useEffect, useState } from "react";
-import { API_URL } from "../API";
-import SinglePlayer from "./SinglePlayer";
+import { fetchAllPlayers, removePlayer } from "../API";
+import { Link } from "react-router-dom";
 
 const AllPlayers = () => {
-  const [players, setPlayers] = useState([]);
-useEffect(() => {
-    async function fetchPlayers() {
-        try {
-            const response = await fetch(API_URL);
-            const data = await response.json();
-            console.log(data.data);
-        } catch (error) {
-            console.error("Error:", error);
-        }
+  const [players, setPlayer] = useState(null);
+  useEffect(() => {
+    async function getAllPlayers() {
+      const allPlayers = await fetchAllPlayers();
+      // console.log(allPlayers);
+      setPlayer(allPlayers);
     }
-    fetchPlayers();
-}, []);
+    getAllPlayers();
+  });
+
+  async function handleDelete(playerId) {
+    await removePlayer(playerId);
+    const response = await fetchAllPlayers();
+    console.log("player deleted");
+    setPlayer(response);
+  }
 
   return (
-    <div>
-      <h1>All Players</h1>
-      {players.map((player) => {
-        return <SinglePlayer key={player.id} player={setPlayers} />;
-      })}
-    </div>
+    players && (
+      <div>
+        <h1>Puppy Bowl Players</h1>
+        <ul>
+          {players.map((player) => (
+            <>
+              <Link to={`/players/${player.id}`} key={player.name}>
+                <img src={player.imageUrl}></img>
+                <button>View Puppy Details</button>
+              </Link>
+              <button onClick={() => handleDelete(player.id)}>
+                Delete Puppy
+              </button>
+            </>
+          ))}
+        </ul>
+      </div>
+    )
   );
 };
 export default AllPlayers;
