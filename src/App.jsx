@@ -1,8 +1,7 @@
-import { AllPlayers, SinglePlayer, NewPlayerForm, NavBar }   from "./components";
+import { AllPlayers, SinglePlayer, NewPlayerForm, NavBar } from "./components";
 import "./App.css";
-import { Routes, Route, } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
-
 function App() {
   return (
     <div>
